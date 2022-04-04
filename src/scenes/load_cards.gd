@@ -18,13 +18,14 @@ func _ready():
 
 func test_butt_pressed():
 	"Open test file we imported and made initially"
-	$Control.hide()
+	$Control/Center.hide()
+	$Control/SRS.show()
 	deck = Deck.new("test")
 	deck.loadIn()
 	card = deck.start() # Start test mode
 	add_child(card)
 	started = true
-
+	deck.mod(card)
 
 func _input(event):
 # Mouse in viewport coordinates.

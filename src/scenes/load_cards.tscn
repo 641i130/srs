@@ -11,46 +11,43 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="Center" type="AspectRatioContainer" parent="Control"]
-visible = false
-anchor_left = 0.50026
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.50026
-anchor_bottom = 0.101852
+anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -102.5
 margin_top = -342.0
 margin_right = 102.5
 margin_bottom = 342.0
 stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Import Button" type="VBoxContainer" parent="Control/Center"]
-margin_left = -24.5
-margin_right = 229.5
-margin_bottom = 254.0
+margin_left = -239.5
+margin_right = 444.5
+margin_bottom = 684.0
 
 [node name="Test" type="Button" parent="Control/Center/Import Button"]
-margin_right = 254.0
+margin_right = 684.0
 margin_bottom = 82.0
 theme = ExtResource( 2 )
 text = "Test"
 
 [node name="Open2" type="Button" parent="Control/Center/Import Button"]
 margin_top = 86.0
-margin_right = 254.0
+margin_right = 684.0
 margin_bottom = 168.0
 theme = ExtResource( 2 )
 text = "Open"
 
 [node name="Import" type="Button" parent="Control/Center/Import Button"]
 margin_top = 172.0
-margin_right = 254.0
+margin_right = 684.0
 margin_bottom = 254.0
 theme = ExtResource( 2 )
 text = "Import"
 
 [node name="SRS" type="AspectRatioContainer" parent="Control"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,54 +55,33 @@ margin_top = -82.0
 stretch_mode = 1
 
 [node name="Import Button" type="HBoxContainer" parent="Control/SRS"]
-margin_left = 584.0
-margin_right = 1336.0
+margin_left = 541.0
+margin_right = 1379.0
 margin_bottom = 82.0
-alignment = 1
+theme = ExtResource( 2 )
+custom_constants/separation = 64
 
 [node name="Again" type="Button" parent="Control/SRS/Import Button"]
 margin_right = 185.0
 margin_bottom = 82.0
-theme = ExtResource( 2 )
-button_mask = 7
 text = "Again"
 
-[node name="Again2" type="Button" parent="Control/SRS/Import Button"]
-margin_left = 189.0
-margin_right = 374.0
+[node name="Hard" type="Button" parent="Control/SRS/Import Button"]
+margin_left = 249.0
+margin_right = 409.0
 margin_bottom = 82.0
-theme = ExtResource( 2 )
-button_mask = 7
-text = "Again"
+text = "Hard"
 
-[node name="Again3" type="Button" parent="Control/SRS/Import Button"]
-margin_left = 378.0
-margin_right = 563.0
+[node name="Good" type="Button" parent="Control/SRS/Import Button"]
+margin_left = 473.0
+margin_right = 629.0
 margin_bottom = 82.0
-theme = ExtResource( 2 )
-button_mask = 7
-text = "Again"
+text = "Good"
 
-[node name="Again4" type="Button" parent="Control/SRS/Import Button"]
-margin_left = 567.0
-margin_right = 752.0
+[node name="Easy" type="Button" parent="Control/SRS/Import Button"]
+margin_left = 693.0
+margin_right = 838.0
 margin_bottom = 82.0
-theme = ExtResource( 2 )
-button_mask = 7
-text = "Again"
-
-[node name="Again5" type="Button" parent="Control/SRS/Import Button"]
-visible = false
-margin_left = 756.0
-margin_right = 941.0
-margin_bottom = 82.0
-theme = ExtResource( 2 )
-button_mask = 7
-text = "Again"
+text = "Easy"
 
 [connection signal="pressed" from="Control/Center/Import Button/Test" to="." method="test_butt_pressed"]
-[connection signal="pressed" from="Control/SRS/Import Button/Again" to="." method="test_butt_pressed"]
-[connection signal="pressed" from="Control/SRS/Import Button/Again2" to="." method="test_butt_pressed"]
-[connection signal="pressed" from="Control/SRS/Import Button/Again3" to="." method="test_butt_pressed"]
-[connection signal="pressed" from="Control/SRS/Import Button/Again4" to="." method="test_butt_pressed"]
-[connection signal="pressed" from="Control/SRS/Import Button/Again5" to="." method="test_butt_pressed"]
