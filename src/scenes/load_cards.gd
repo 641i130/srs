@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 # Planned workflow:
 ### 2 Options: import, load
@@ -8,6 +8,7 @@ extends Node2D
 var deck
 var card
 var started = false
+var toggle = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +20,7 @@ func _ready():
 func test_butt_pressed():
 	"Open test file we imported and made initially"
 	$Control/Center.hide()
-	$Control/SRS.show()
+	$Control/SRS.hide()
 	deck = Deck.new("test")
 	deck.loadIn()
 	card = deck.start() # Start test mode
@@ -31,3 +32,10 @@ func _input(event):
 # Mouse in viewport coordinates.
 	if event.is_action_pressed("ui_accept") && started:
 		deck.mod(card)
+		if toggle == 0:
+			$Control/SRS.show()
+			toggle+=1
+		else:
+			$Control/SRS.hide()
+			toggle=0
+		
