@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 # Planned workflow:
 ### 2 Options: import, load
