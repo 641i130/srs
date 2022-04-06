@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 # Planned workflow:
 ### 2 Options: import, load
@@ -17,25 +17,26 @@ func _ready():
 	#deck.import("/home/koe/CSdev/Game Development Stuff/Godot Repository/study/test.txt",";*;",2)
 	#$FileDialog.popup() # Popup file dialog
 
-func test_butt_pressed():
+func _input(event):
+# Mouse in viewport coordinates.
+	if event.is_action_pressed("ui_accept") && started:
+		deck.mod(card)
+		if toggle == 0:
+			get_node("Buttons/SRS").show()
+			toggle+=1
+		else:
+			get_node("Buttons/SRS").hide()
+			toggle=0
+		
+
+
+func _on_Test_pressed():
 	"Open test file we imported and made initially"
-	$Control/Center.hide()
-	$Control/SRS.hide()
+	get_node("Buttons/Options").hide()
+	get_node("Buttons/SRS").hide()
 	deck = Deck.new("test")
 	deck.loadIn()
 	card = deck.start() # Start test mode
 	add_child(card)
 	started = true
 	deck.mod(card)
-
-func _input(event):
-# Mouse in viewport coordinates.
-	if event.is_action_pressed("ui_accept") && started:
-		deck.mod(card)
-		if toggle == 0:
-			$Control/SRS.show()
-			toggle+=1
-		else:
-			$Control/SRS.hide()
-			toggle=0
-		

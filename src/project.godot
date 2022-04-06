@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="study"
 config/description="study tool made in godot"
-run/main_scene="res://scenes/test2.tscn"
+run/main_scene="res://scenes/main.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
