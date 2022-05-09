@@ -85,3 +85,4 @@ margin_bottom = 82.0
 text = "Easy"
 
 [connection signal="pressed" from="Buttons/Options/VBoxContainer/Test" to="." method="_on_Test_pressed"]
+[connection signal="pressed" from="Buttons/Options/VBoxContainer/Import" to="." method="_on_Import_pressed"]

@@ -40,3 +40,9 @@ func _on_Test_pressed():
 	add_child(card)
 	started = true
 	deck.mod(card)
+
+func _on_Import_pressed():
+	"Switch scenes to file drag and drop window!"
+	# TODO Maybe add an actually file tree thing in the future
+	get_tree().change_scene("res://scenes/import_decks.tscn")
+
