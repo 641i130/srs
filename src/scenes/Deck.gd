@@ -90,5 +90,5 @@ func start():
 	inPlay.shuffle() # shuffle deck
 	# Add in the card object we'll be modifying:
 	var card = load("res://scenes/Card.tscn").instance()
-	card.hide()
+	#card.hide()
 	return card
