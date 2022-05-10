@@ -12,10 +12,22 @@ var toggle = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	# This path for importing will come with drag onto window 
-	#deck.import("/home/koe/CSdev/Game Development Stuff/Godot Repository/study/test.txt",";*;",2)
-	#$FileDialog.popup() # Popup file dialog
+	# Enable files dropped onto window functionality
+	get_tree().connect("files_dropped", self, "load_in")
+	
+func load_in(files_dropped : PoolStringArray, screen : int):
+	"On file drop, do this"
+	# VERIFY the file is a CSV/TXT/SOMITHNG in the future
+	#if files_dropped[0]
+	# GET USER file input
+	deck = Deck.new() # handle if file exsists with popup
+	
+	#
+	Deck.import(files_dropped[0])
+	
+	# prompt for delimiter
+	# run function on it to format it correctly (below)
+	
 
 func _input(event):
 # Mouse in viewport coordinates.
