@@ -17,13 +17,12 @@ func _ready():
 	
 func load_in(files_dropped : PoolStringArray, screen : int):
 	"On file drop, do this"
+	pass
 	# VERIFY the file is a CSV/TXT/SOMITHNG in the future
 	#if files_dropped[0]
 	# GET USER file input
-	deck = Deck.new() # handle if file exsists with popup
-	
-	#
-	Deck.import(files_dropped[0])
+	#deck = Deck.new() # handle if file exsists with popup
+	# Deck.import(files_dropped[0])
 	
 	# prompt for delimiter
 	# run function on it to format it correctly (below)
@@ -32,13 +31,16 @@ func load_in(files_dropped : PoolStringArray, screen : int):
 func _input(event):
 # Mouse in viewport coordinates.
 	if event.is_action_pressed("ui_accept") && started:
-		deck.mod(card)
-		if toggle == 0:
-			get_node("Buttons/SRS").show()
-			toggle+=1
+		if not deck.complete:
+			deck.mod(card)
+			if toggle == 0:
+				get_node("Buttons/SRS").show()
+				toggle+=1
+			else:
+				get_node("Buttons/SRS").hide()
+				toggle=0
 		else:
-			get_node("Buttons/SRS").hide()
-			toggle=0
+			get_tree().change_scene("res://scenes/load_cards.tscn")
 		
 
 

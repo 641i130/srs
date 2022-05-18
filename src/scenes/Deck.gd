@@ -4,6 +4,7 @@ class_name Deck
 var cards = []
 var inPlay = [] # Cards user is currently learning (what will be saved when save is called)
 var step = 0
+var complete = false
 
 func _init(name_in):
 	self.name = name_in
@@ -77,9 +78,17 @@ func mod(card):
 				# TODO SHOW 4 options to implement SRS
 			2:
 				inPlay.pop_front()
-				card.get_node("Top").text = inPlay[0][1] # first card
-				card.get_node("Bot").text = "" # second card
-				step=0
+				if len(inPlay) != 0:
+					card.get_node("Top").text = inPlay[0][1] # first card
+					card.get_node("Bot").text = "" # second card
+					step=0
+				else:
+					card.get_node("Top").text = "Session Complete" # first card
+					card.get_node("Bot").text = "(insert stats here)"
+					# End game practice loop here! i hate how unorganized this is :P
+					# Here I would show the end screen and stuff then 
+					# Go back to deck listing
+					self.complete = true
 		card.show()
 		step+=1
 
