@@ -16,13 +16,13 @@ alignment = 1
 [node name="Options" type="AspectRatioContainer" parent="Buttons"]
 margin_left = 862.0
 margin_right = 1057.0
-margin_bottom = 254.0
+margin_bottom = 340.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Buttons/Options"]
 margin_right = 195.0
-margin_bottom = 254.0
+margin_bottom = 340.0
 alignment = 1
 
 [node name="Test" type="Button" parent="Buttons/Options/VBoxContainer"]
@@ -42,13 +42,20 @@ margin_right = 195.0
 margin_bottom = 254.0
 text = "import"
 
-[node name="MarginContainer" type="MarginContainer" parent="Buttons"]
+[node name="back" type="Button" parent="Buttons/Options/VBoxContainer"]
 margin_top = 258.0
+margin_right = 195.0
+margin_bottom = 340.0
+text = "back"
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons"]
+margin_top = 344.0
 margin_right = 1920.0
-margin_bottom = 994.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
 
 [node name="SRS" type="AspectRatioContainer" parent="Buttons"]
+visible = false
 margin_top = 998.0
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -86,3 +93,4 @@ text = "Easy"
 
 [connection signal="pressed" from="Buttons/Options/VBoxContainer/Test" to="." method="_on_Test_pressed"]
 [connection signal="pressed" from="Buttons/Options/VBoxContainer/Import" to="." method="_on_Import_pressed"]
+[connection signal="pressed" from="Buttons/Options/VBoxContainer/back" to="." method="_on_back_pressed"]

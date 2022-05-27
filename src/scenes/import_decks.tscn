@@ -33,11 +33,21 @@ size_flags_horizontal = 0
 theme = ExtResource( 2 )
 alignment = 1
 
+[node name="Text" type="Label" parent="Buttons"]
+margin_top = 421.0
+margin_right = 1920.0
+margin_bottom = 572.0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "Drag and Drop to Import"
+align = 1
+autowrap = true
+
 [node name="Options" type="AspectRatioContainer" parent="Buttons"]
 margin_left = 861.0
-margin_top = 499.0
+margin_top = 576.0
 margin_right = 1059.0
-margin_bottom = 581.0
+margin_bottom = 658.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 

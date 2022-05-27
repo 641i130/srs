@@ -14,6 +14,9 @@ var toggle = 0
 func _ready():
 	# Enable files dropped onto window functionality
 	get_tree().connect("files_dropped", self, "load_in")
+	# Read in current save files and make buttons for each:
+	# Buttons/Options/VBoxContainer add buttons to this container
+	
 	
 func load_in(files_dropped : PoolStringArray, screen : int):
 	"On file drop, do this"
@@ -60,3 +63,7 @@ func _on_Import_pressed():
 	# TODO Maybe add an actually file tree thing in the future
 	get_tree().change_scene("res://scenes/import_decks.tscn")
 
+
+func _on_back_pressed():
+	"Switch back to main menu"
+	get_tree().change_scene("res://scenes/main.tscn")
