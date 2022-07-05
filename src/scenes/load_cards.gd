@@ -40,16 +40,17 @@ func _input(event):
 			deck.mod(card)
 			if toggle == 0:
 				get_node("Buttons/SRS").show()
+				$Buttons/SRS/transition/AnimationPlayer.play("fade_in")
 				toggle+=1
 			else:
 				get_node("Buttons/SRS").hide()
+				$Buttons/SRS/transition/AnimationPlayer.play("fade_in")
 				toggle=0
 		else:
 			get_tree().change_scene("res://scenes/load_cards.tscn")
 
 func _on_Test_pressed():
 	"Open test file we imported and made initially"
-	_transition_rect.fade() # CUSTOM FADE FUNCTION
 	get_node("Buttons/Options").hide()
 	get_node("Buttons/SRS").hide()
 	deck = Deck.new("test")

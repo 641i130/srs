@@ -73,24 +73,32 @@ func mod(card):
 			0:
 				card.get_node("Top").text = inPlay[0][1] # first card
 				card.get_node("Bot").text = "" # second card
+				card.get_node("Top").get_node("ani").play("fade_in")
 			1:
 				card.get_node("Bot").text = inPlay[0][2] # second card
+				card.get_node("Bot").get_node("ani").play("fade_in")
 				# TODO SHOW 4 options to implement SRS
 			2:
 				inPlay.pop_front()
 				if len(inPlay) != 0:
 					card.get_node("Top").text = inPlay[0][1] # first card
 					card.get_node("Bot").text = "" # second card
+					card.get_node("Top").get_node("ani").play("fade_in")
 					step=0
 				else:
 					card.get_node("Top").text = "Session Complete" # first card
 					card.get_node("Bot").text = "(insert stats here)"
+					card.get_node("Bot").get_node("ani").play("fade_in")
 					# End game practice loop here! i hate how unorganized this is :P
 					# Here I would show the end screen and stuff then 
 					# Go back to deck listing
 					self.complete = true
 		card.show()
 		step+=1
+	else:
+		# IF save file is empty
+		# TODO SOMETHING
+		pass
 
 func start():
 	"Loop over deck until all cards are marked for a further date...?"
