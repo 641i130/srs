@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://theme/menu.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/transition.tscn" type="PackedScene" id=3]
 
 [node name="Main Menu" type="MarginContainer"]
 anchor_right = 1.0
@@ -50,5 +51,11 @@ custom_colors/font_color_hover = Color( 0.909804, 0.72549, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.709804, 0, 1, 1 )
 button_mask = 7
 text = "Exit"
+
+[node name="transition" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/VBoxContainer/Start" to="." method="_start_pressed"]

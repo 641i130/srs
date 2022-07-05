@@ -10,6 +10,8 @@ var card
 var started = false
 var toggle = 0
 
+onready var _transition_rect := $transition
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Enable files dropped onto window functionality
@@ -44,11 +46,10 @@ func _input(event):
 				toggle=0
 		else:
 			get_tree().change_scene("res://scenes/load_cards.tscn")
-		
-
 
 func _on_Test_pressed():
 	"Open test file we imported and made initially"
+	_transition_rect.fade() # CUSTOM FADE FUNCTION
 	get_node("Buttons/Options").hide()
 	get_node("Buttons/SRS").hide()
 	deck = Deck.new("test")
