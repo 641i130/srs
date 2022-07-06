@@ -15,8 +15,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-#onready var _transition_rect := $transistion
-
-func _start_pressed():	
+func _start_pressed():
 	get_tree().change_scene("res://scenes/load_cards.tscn")
-	#_transition_rect.transition_to("res://scenes/load_cards.tscn")
+	

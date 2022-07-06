@@ -39,11 +39,13 @@ func _input(event):
 		if not deck.complete:
 			deck.mod(card)
 			if toggle == 0:
-				$Buttons/SRS/AnimationPlayer.play("fade")
+				$Buttons/SRS/fade_in.play("fade")
 				get_node("Buttons/SRS").show()
 				toggle+=1
 			else:
-				$Buttons/SRS/AnimationPlayer.play("fade")
+				var ani := $Buttons/SRS/fade_out
+				ani.play("fade")
+				yield(ani, "animation_finished")
 				get_node("Buttons/SRS").hide()
 				toggle=0
 		else:

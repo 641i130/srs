@@ -71,24 +71,31 @@ func mod(card):
 	if len(inPlay) != 0:
 		match step:
 			0:
+				card.get_node("Bot").get_node("fade_out").play("fade")
 				card.get_node("Top").text = inPlay[0][1] # first card
 				card.get_node("Bot").text = "" # second card
-				card.get_node("Top").get_node("ani").play("fade_in")
+				card.get_node("Top").get_node("fade_in").play("fade")
 			1:
 				card.get_node("Bot").text = inPlay[0][2] # second card
-				card.get_node("Bot").get_node("ani").play("fade_in")
+				card.get_node("Bot").get_node("fade_in").play("fade")
 				# TODO SHOW 4 options to implement SRS
 			2:
 				inPlay.pop_front()
 				if len(inPlay) != 0:
+					var ani = card.get_node("Top").get_node("fade_out")
+					var aani = card.get_node("Bot").get_node("fade_out")
+					ani.play("fade")
+					aani.play("fade")
+					yield(ani, "animation_finished")
+					yield(aani, "animation_finished")
 					card.get_node("Top").text = inPlay[0][1] # first card
 					card.get_node("Bot").text = "" # second card
-					card.get_node("Top").get_node("ani").play("fade_in")
+					card.get_node("Top").get_node("fade_in").play("fade")
 					step=0
 				else:
 					card.get_node("Top").text = "Session Complete" # first card
 					card.get_node("Bot").text = "(insert stats here)"
-					card.get_node("Bot").get_node("ani").play("fade_in")
+					card.get_node("Bot").get_node("fade_in").play("fade")
 					# End game practice loop here! i hate how unorganized this is :P
 					# Here I would show the end screen and stuff then 
 					# Go back to deck listing

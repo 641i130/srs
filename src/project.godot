@@ -35,6 +35,8 @@ window/stretch/aspect="keep"
 [global]
 
 stretch=false
+android=true
+sdk=true
 
 [physics]
 
