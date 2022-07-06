@@ -40,13 +40,14 @@ func get_dir_contents(rootPath: String) -> Array:
 
 	return files
 
-func _on_Test_pressed(save: String):
+# CALLED FROM A SAVE FILE LOADING IN
+func _save_open(save_name: String):
 	"Open test file we imported and made initially"
+	print("Opening : " + save_name)
 	# CHANGE THIS STUFF INTO LIKE A MODE OR SOMETHING
-	get_node("Buttons/Options").hide()
-	get_node("Buttons/SRS").hide()
-	
-	deck = Deck.new(save)
+	get_node("Buttons").hide()
+	# DECK INITIATING
+	deck = Deck.new(save_name) # Take in string from button
 	deck.loadIn()
 	card = deck.start() # Start test mode
 	add_child(card)
@@ -55,13 +56,12 @@ func _on_Test_pressed(save: String):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Enable files dropped onto window functionality
-	# ARRAY OF FILES IN FOLDER!!! Make buttons based off of this!
+	# Make button for each save file
 	var saves = get_dir_contents("user://saves")
-	# Make buttons based off of the directory! 
 	for file in saves:
-		var butt = Button.new()
+		var butt =  Button.new()
 		butt.text = String(file).replace("user://saves/","").split(".")[0] # user://saves/test.txt -> test
+		butt.connect("pressed", self, "_save_open", [butt.text]) # send the legit file name to the function
 		get_node("Buttons/saves").add_child(butt)
 	# Read in current save files and make buttons for each:
 	# Buttons/Options/VBoxContainer add buttons to this container
@@ -76,7 +76,6 @@ func load_in(files_dropped : PoolStringArray, screen : int):
 	# GET USER file input
 	#deck = Deck.new() # handle if file exsists with popup
 	# Deck.import(files_dropped[0])
-	
 	# prompt for delimiter
 	# run function on it to format it correctly (below)
 	

@@ -8,30 +8,23 @@ var complete = false
 
 # Different groups of cards for the various sets the card will be in for spaced repititon and the algorithm
 
-func _init(name_in):
+func _init(name_in): # Called from .new(name)
 	self.name = name_in
 	var save_game = File.new() # Check if file exsists
-	if not save_game.file_exists("user://" + self.name + ".txt"): # If it doesn't exsist make it
+	if not save_game.file_exists("user://saves/" + self.name + ".txt"): # If it doesn't exsist make it
 		# TODO Prompt its missing, ask to import
 		save()
 	# Start practice? make that func i think
 
-func backup():
-	# TODO
-	pass
-
 func loadIn():
 	"File exsists already, read into inPlay"
 	var save_game = File.new() # Check if file exsists
-	var path = "user://" + self.name + ".txt"
+	var path = "user://saves/" + self.name + ".txt" # TODO FIX FILE EXTENSION
 	
 	if not save_game.file_exists(path):
 		# TODO Throw error missing file 
 		# TODO Restore from a backup?
-		pass
-	elif save_game.get_len() == 0: # If file is empty
-		# TODO tell player its empty
-		pass
+		print("FILE is missing for some reason")
 	else:
 		save_game.open(path, File.READ) # Open user inputted file
 		var lines = save_game.get_as_text().split("\n") # Read file in & Split by default delim
@@ -55,25 +48,31 @@ func import(path,delim,count=2):
 	var save_game = File.new() # Attempt to make a save file
 	save_game.open("user://" + self.name + ".txt", File.WRITE)
 	# For every card
-	var time = [OS.get_date().get('year'),OS.get_date().get('month'),OS.get_date().get('day')]
+	var time = [OS.get_date().get('year'),OS.get_date().get('month'),OS.get_date().get('day')] # basically need to review card right away
 	for card in cards:
 		# Example: [2022, 4, 3];*;ゴルフ;*;golf
 		# TODO depending on how many values the user is inputting we can add them at the end here:
+		# TODO USE DATA TYPE IN PLACE OF TIME MAYBE? 
 		var card_data = str(time) + ";*;" + card[0] + ";*;" + card[1] 
 		save_game.store_line(card_data) # Write the line to the file
 
 func save():
 	"Save game data into save format"
 	"Uses current inPlay array to save"
-	var save_game = File.new() # Attempt to make a save file
+	var save_game = File.new() # Attempt to make a save file if it doesn't exsist
 	# Update dates based off of inPlay
-	save_game.open("user://" + self.name + ".txt", File.WRITE)
-	for card in inPlay:
+	save_game.open("user://saves/" + self.name + ".txt", File.WRITE)
+	for card in inPlay: # overwrite the file
 		save_game.store_line(card) # Write the line to the file	
 	save_game.close() # Close save file
 
+func backup():
+	# TODO
+	pass
+
 func mod(card):
-	"Modify the card at hand for practicing"
+	"Modify the VISUALS of the card at hand for practicing" 
+	# I hate how this was written. I'm sorry
 	if len(inPlay) != 0:
 		match step:
 			0:
@@ -110,8 +109,8 @@ func mod(card):
 		step+=1
 	else:
 		# IF save file is empty
-		# TODO SOMETHING
-		pass
+		# TODO SOMETHING SCREAM OR SOMETHING
+		print("Save file empty randomly...")
 
 func start():
 	"Loop over deck until all cards are marked for a further date...?"
