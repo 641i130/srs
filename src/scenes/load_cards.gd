@@ -1,7 +1,6 @@
 extends CanvasLayer
-
 # Planned workflow:
-### 2 Options: import, load
+### Options: import, load, delete, edit, export?
 ### import reads in a csv with inputted delimiter 
 ### then it saves it into a new csv-like format for saving the dates
 
@@ -12,10 +11,58 @@ var toggle = 0
 
 onready var _transition_rect := $transition
 
+func _add_dir_contents(dir: Directory, files: Array, directories: Array):
+	var file_name = dir.get_next()
+	while (file_name != ""):
+		var path = dir.get_current_dir() + "/" + file_name
+		if dir.current_is_dir():
+			print("Found directory: %s" % path)
+			var subDir = Directory.new()
+			subDir.open(path)
+			subDir.list_dir_begin(true, false)
+			directories.append(path)
+			_add_dir_contents(subDir, files, directories)
+		else:
+			print("Found file: %s" % path)
+			files.append(path)
+			file_name = dir.get_next()
+	dir.list_dir_end()
+
+func get_dir_contents(rootPath: String) -> Array:
+	var files = []
+	var directories = []
+	var dir = Directory.new()
+	if dir.open(rootPath) == OK:
+		dir.list_dir_begin(true, false)
+		_add_dir_contents(dir, files, directories)
+	else:
+		push_error("An error occurred when trying to access the path.")
+
+	return files
+
+func _on_Test_pressed(save: String):
+	"Open test file we imported and made initially"
+	# CHANGE THIS STUFF INTO LIKE A MODE OR SOMETHING
+	get_node("Buttons/Options").hide()
+	get_node("Buttons/SRS").hide()
+	
+	deck = Deck.new(save)
+	deck.loadIn()
+	card = deck.start() # Start test mode
+	add_child(card)
+	started = true
+	deck.mod(card)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Enable files dropped onto window functionality
-	get_tree().connect("files_dropped", self, "load_in")
+	# ARRAY OF FILES IN FOLDER!!! Make buttons based off of this!
+	var saves = get_dir_contents("user://saves")
+	# Make buttons based off of the directory! 
+	for file in saves:
+		var butt = Button.new()
+		butt.text = String(file).replace("user://saves/","").split(".")[0] # user://saves/test.txt -> test
+		get_node("Buttons/saves").add_child(butt)
 	# Read in current save files and make buttons for each:
 	# Buttons/Options/VBoxContainer add buttons to this container
 	
@@ -23,6 +70,7 @@ func _ready():
 func load_in(files_dropped : PoolStringArray, screen : int):
 	"On file drop, do this"
 	pass
+	# TODO
 	# VERIFY the file is a CSV/TXT/SOMITHNG in the future
 	#if files_dropped[0]
 	# GET USER file input
@@ -52,17 +100,6 @@ func _input(event):
 				toggle=0
 		else:
 			get_tree().change_scene("res://scenes/load_cards.tscn")
-
-func _on_Test_pressed():
-	"Open test file we imported and made initially"
-	get_node("Buttons/Options").hide()
-	get_node("Buttons/SRS").hide()
-	deck = Deck.new("test")
-	deck.loadIn()
-	card = deck.start() # Start test mode
-	add_child(card)
-	started = true
-	deck.mod(card)
 
 func _on_Import_pressed():
 	"Switch scenes to file drag and drop window!"

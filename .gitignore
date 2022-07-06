@@ -1,5 +1,6 @@
 
 # Godot-specific ignores
+/src/android/
 /src/.import/
 /src/export
 /src/export.cfg

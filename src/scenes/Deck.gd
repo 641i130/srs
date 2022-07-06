@@ -6,6 +6,8 @@ var inPlay = [] # Cards user is currently learning (what will be saved when save
 var step = 0
 var complete = false
 
+# Different groups of cards for the various sets the card will be in for spaced repititon and the algorithm
+
 func _init(name_in):
 	self.name = name_in
 	var save_game = File.new() # Check if file exsists
@@ -22,9 +24,13 @@ func loadIn():
 	"File exsists already, read into inPlay"
 	var save_game = File.new() # Check if file exsists
 	var path = "user://" + self.name + ".txt"
+	
 	if not save_game.file_exists(path):
 		# TODO Throw error missing file 
 		# TODO Restore from a backup?
+		pass
+	elif save_game.get_len() == 0: # If file is empty
+		# TODO tell player its empty
 		pass
 	else:
 		save_game.open(path, File.READ) # Open user inputted file

@@ -44,43 +44,30 @@ size_flags_horizontal = 0
 theme = ExtResource( 2 )
 alignment = 1
 
-[node name="Options" type="AspectRatioContainer" parent="Buttons"]
-margin_left = 862.0
-margin_right = 1057.0
-margin_bottom = 340.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons/Options"]
-margin_right = 195.0
-margin_bottom = 340.0
+[node name="saves" type="VBoxContainer" parent="Buttons"]
+margin_right = 1920.0
 alignment = 1
 
-[node name="Test" type="Button" parent="Buttons/Options/VBoxContainer"]
-margin_right = 195.0
+[node name="oo" type="HBoxContainer" parent="Buttons"]
+margin_top = 4.0
+margin_right = 1920.0
+margin_bottom = 86.0
+alignment = 1
+
+[node name="Import" type="Button" parent="Buttons/oo"]
+margin_left = 792.0
+margin_right = 987.0
 margin_bottom = 82.0
-text = "test"
-
-[node name="Open2" type="Button" parent="Buttons/Options/VBoxContainer"]
-margin_top = 86.0
-margin_right = 195.0
-margin_bottom = 168.0
-text = "open"
-
-[node name="Import" type="Button" parent="Buttons/Options/VBoxContainer"]
-margin_top = 172.0
-margin_right = 195.0
-margin_bottom = 254.0
 text = "import"
 
-[node name="back" type="Button" parent="Buttons/Options/VBoxContainer"]
-margin_top = 258.0
-margin_right = 195.0
-margin_bottom = 340.0
+[node name="back" type="Button" parent="Buttons/oo"]
+margin_left = 991.0
+margin_right = 1127.0
+margin_bottom = 82.0
 text = "back"
 
 [node name="MarginContainer" type="MarginContainer" parent="Buttons"]
-margin_top = 344.0
+margin_top = 90.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
@@ -130,6 +117,5 @@ anims/fade = SubResource( 2 )
 
 [node name="transition" parent="." instance=ExtResource( 3 )]
 
-[connection signal="pressed" from="Buttons/Options/VBoxContainer/Test" to="." method="_on_Test_pressed"]
-[connection signal="pressed" from="Buttons/Options/VBoxContainer/Import" to="." method="_on_Import_pressed"]
-[connection signal="pressed" from="Buttons/Options/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Buttons/oo/Import" to="." method="_on_Import_pressed"]
+[connection signal="pressed" from="Buttons/oo/back" to="." method="_on_back_pressed"]
