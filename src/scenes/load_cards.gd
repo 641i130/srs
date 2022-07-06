@@ -34,7 +34,9 @@ func load_in(files_dropped : PoolStringArray, screen : int):
 	
 
 func _input(event):
-# Mouse in viewport coordinates.
+	# Mouse in viewport coordinates.
+	# PRINT FPS
+	#print(String(Engine.get_frames_per_second()))
 	if event.is_action_pressed("ui_accept") && started:
 		if not deck.complete:
 			deck.mod(card)
