@@ -76,15 +76,18 @@ func mod(card):
 	if len(inPlay) != 0:
 		match step:
 			0:
+				# SHOW top card only
 				card.get_node("Bot").get_node("fade_out").play("fade")
 				card.get_node("Top").text = inPlay[0][1] # first card
 				card.get_node("Bot").text = "" # second card
 				card.get_node("Top").get_node("fade_in").play("fade")
 			1:
+				# Show top and bottom card
 				card.get_node("Bot").text = inPlay[0][2] # second card
 				card.get_node("Bot").get_node("fade_in").play("fade")
-				# TODO SHOW 4 options to implement SRS
 			2:
+				# Fade out cards, remove from array (TODO algorthim based off of time and button pressed)
+				
 				inPlay.pop_front()
 				if len(inPlay) != 0:
 					var ani = card.get_node("Top").get_node("fade_out")
@@ -121,3 +124,5 @@ func start():
 	var card = load("res://scenes/Card.tscn").instance()
 	#card.hide()
 	return card
+
+

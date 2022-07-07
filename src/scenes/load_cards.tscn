@@ -7,14 +7,14 @@
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("HBoxContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 0.482968 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -22,14 +22,14 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "fade"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("HBoxContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 0.482968 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
@@ -69,17 +69,17 @@ text = "back"
 [node name="MarginContainer" type="MarginContainer" parent="Buttons"]
 margin_top = 90.0
 margin_right = 1920.0
-margin_bottom = 1080.0
+margin_bottom = 994.0
 size_flags_vertical = 3
 
 [node name="SRS" type="AspectRatioContainer" parent="Buttons"]
-visible = false
 margin_top = 998.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons/SRS"]
+modulate = Color( 0, 0, 0, 0 )
 margin_left = 631.0
 margin_right = 1289.0
 margin_bottom = 82.0

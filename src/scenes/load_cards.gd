@@ -45,7 +45,9 @@ func _save_open(save_name: String):
 	"Open test file we imported and made initially"
 	print("Opening : " + save_name)
 	# CHANGE THIS STUFF INTO LIKE A MODE OR SOMETHING
-	get_node("Buttons").hide()
+	$Buttons/saves.hide()
+	$Buttons/oo.hide()
+	
 	# DECK INITIATING
 	deck = Deck.new(save_name) # Take in string from button
 	deck.loadIn()
@@ -84,18 +86,20 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	# PRINT FPS
 	#print(String(Engine.get_frames_per_second()))
+	if event.is_action_pressed("quit"):
+		 get_tree().quit()
 	if event.is_action_pressed("ui_accept") && started:
 		if not deck.complete:
 			deck.mod(card)
 			if toggle == 0:
 				$Buttons/SRS/fade_in.play("fade")
-				get_node("Buttons/SRS").show()
+				$Buttons/SRS/HBoxContainer.show()
 				toggle+=1
 			else:
-				var ani := $Buttons/SRS/fade_out
+				var ani = $Buttons/SRS/fade_out
 				ani.play("fade")
 				yield(ani, "animation_finished")
-				get_node("Buttons/SRS").hide()
+				$Buttons/SRS/HBoxContainer.hide()
 				toggle=0
 		else:
 			get_tree().change_scene("res://scenes/load_cards.tscn")
