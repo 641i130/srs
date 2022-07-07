@@ -77,19 +77,33 @@ func mod(card):
 		match step:
 			0:
 				# SHOW top card only
-				card.get_node("Bot").get_node("fade_out").play("fade")
+				#card.get_node("Bot1").get_node("fade_out").play("fade")
+				#card.get_node("Bot").get_node("fade_out").play("fade")
 				card.get_node("Top").text = inPlay[0][1] # first card
 				card.get_node("Bot").text = "" # second card
+				card.get_node("Bot1").text = ""
 				card.get_node("Top").get_node("fade_in").play("fade")
 			1:
-				# Show top and bottom card
-				card.get_node("Bot").text = inPlay[0][2] # second card
-				card.get_node("Bot").get_node("fade_in").play("fade")
+				# TODO CLEAN THIS UP! DAMN! LOOKS LIKE ASS
+				var line = inPlay[0][2]
+				# If 2nd line has <BR> split that here!!!
+				if len(line.split("<br />")) == 2:
+					print(len(line.split("<br />")))
+					line = line.split("<br />")
+					print(line)
+					card.get_node("Bot").text = line[0]
+					card.get_node("Bot1").text = line[1]
+					card.get_node("Bot").get_node("fade_in").play("fade")
+					card.get_node("Bot1").get_node("fade_in").play("fade")
+				else:
+					card.get_node("Bot").text = inPlay[0][2]  # second card
+					card.get_node("Bot").get_node("fade_in").play("fade")
 			2:
 				# Fade out cards, remove from array (TODO algorthim based off of time and button pressed)
-				
 				inPlay.pop_front()
-				if len(inPlay) != 0:
+				if len(inPlay) != 0: # If its not the last card!
+					# SHOW top card only
+					card.get_node("Bot1").get_node("fade_out").play("fade")
 					var ani = card.get_node("Top").get_node("fade_out")
 					var aani = card.get_node("Bot").get_node("fade_out")
 					ani.play("fade")
@@ -98,9 +112,10 @@ func mod(card):
 					yield(aani, "animation_finished")
 					card.get_node("Top").text = inPlay[0][1] # first card
 					card.get_node("Bot").text = "" # second card
+					card.get_node("Bot1").text = ""
 					card.get_node("Top").get_node("fade_in").play("fade")
 					step=0
-				else:
+				else: # If its the last card!
 					card.get_node("Top").text = "Session Complete" # first card
 					card.get_node("Bot").text = "(insert stats here)"
 					card.get_node("Bot").get_node("fade_in").play("fade")
