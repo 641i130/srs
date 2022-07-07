@@ -46,7 +46,8 @@ func load_in(files_dropped : PoolStringArray, screen : int):
 	\"On file drop, do this\"
 	print(\"Checking : \" + files_dropped[0]) # HANDLE FILE
 	path = files_dropped[0]
-	import()
+	$savename.show()
+
 
 func _enter_delimiter(new_text):
 	print(\"Entered:\")
