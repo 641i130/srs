@@ -6,62 +6,176 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
+var save_name = \"\"
+var path = \"\"
+var delim = \"\"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect(\"files_dropped\", self, \"load_in\")
+
+func import():
+	\"Import file to deck\"
+	# VERIFY the file is a CSV/TXT/SOMITHNG in the future
+	var deck = Deck.new(save_name) # handle if file exsists with popup
+	deck.import(path,delim)
+	# TODO say it saved
+	get_tree().change_scene(\"res://scenes/load_cards.tscn\")
 	
+func _on_Cancel_pressed():
+	get_tree().change_scene(\"res://scenes/load_cards.tscn\")
+
+func _on_choose_pressed():
+	$filepath.show()
+	$dragndrop.hide()
+	
+func _on_input_text_entered(new_text):
+	print(\"Entered:\")
+	print(new_text)
+	path = new_text
+	$filepath.hide()
+	$savename.show()
+
+func _save_name_entered(new_text):
+	print(\"Entered:\")
+	print(new_text)
+	save_name = new_text
+	$savename.hide()
+	$delim.show()
+
 func load_in(files_dropped : PoolStringArray, screen : int):
 	\"On file drop, do this\"
-	print(\"{}\",files_dropped[0])
+	print(\"Checking : \" + files_dropped[0]) # HANDLE FILE
+	path = files_dropped[0]
+	import()
 
-func _on_Cancel_pressed():
-		get_tree().change_scene(\"res://scenes/load_cards.tscn\")
+func _enter_delimiter(new_text):
+	print(\"Entered:\")
+	print(new_text)
+	delim = new_text
+	import()
 "
 
 [node name="ImportDecks" type="CanvasLayer"]
 script = SubResource( 1 )
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="dragndrop" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
 alignment = 1
 
-[node name="Text" type="Label" parent="Buttons"]
-margin_top = 421.0
+[node name="Text" type="Label" parent="dragndrop"]
+margin_top = 303.0
 margin_right = 1920.0
-margin_bottom = 572.0
+margin_bottom = 605.0
 size_flags_vertical = 0
 theme = ExtResource( 2 )
-text = "Drag and Drop to Import"
+text = "Drag and Drop to Import
+or"
 align = 1
 autowrap = true
 
-[node name="Options" type="AspectRatioContainer" parent="Buttons"]
-margin_left = 861.0
-margin_top = 576.0
-margin_right = 1059.0
-margin_bottom = 658.0
+[node name="Options" type="AspectRatioContainer" parent="dragndrop"]
+margin_left = 789.0
+margin_top = 609.0
+margin_right = 1130.0
+margin_bottom = 777.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons/Options"]
-margin_right = 198.0
-margin_bottom = 82.0
+[node name="VBoxContainer" type="VBoxContainer" parent="dragndrop/Options"]
+margin_right = 341.0
+margin_bottom = 168.0
 alignment = 1
 
-[node name="Cancel" type="Button" parent="Buttons/Options/VBoxContainer"]
-margin_right = 198.0
+[node name="choose" type="Button" parent="dragndrop/Options/VBoxContainer"]
+margin_right = 341.0
 margin_bottom = 82.0
+text = "Choose File"
+
+[node name="Cancel" type="Button" parent="dragndrop/Options/VBoxContainer"]
+margin_top = 86.0
+margin_right = 341.0
+margin_bottom = 168.0
 text = "Cancel"
 
 [node name="transition" parent="." instance=ExtResource( 1 )]
 
-[connection signal="pressed" from="Buttons/Options/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
+[node name="filepath" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -420.5
+margin_top = -107.0
+margin_right = 420.5
+margin_bottom = 107.0
+
+[node name="Label" type="Label" parent="filepath"]
+margin_right = 863.0
+margin_bottom = 151.0
+theme = ExtResource( 2 )
+text = "Enter file path:"
+
+[node name="input" type="LineEdit" parent="filepath"]
+margin_top = 155.0
+margin_right = 863.0
+margin_bottom = 214.0
+theme = ExtResource( 2 )
+caret_blink = true
+
+[node name="savename" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = -107.0
+margin_right = 511.0
+margin_bottom = 107.0
+
+[node name="Label" type="Label" parent="savename"]
+margin_right = 1022.0
+margin_bottom = 151.0
+theme = ExtResource( 2 )
+text = "Enter Save Name:"
+
+[node name="input" type="LineEdit" parent="savename"]
+margin_top = 155.0
+margin_right = 1022.0
+margin_bottom = 214.0
+theme = ExtResource( 2 )
+caret_blink = true
+
+[node name="delim" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = -107.0
+margin_right = 511.0
+margin_bottom = 107.0
+
+[node name="Label" type="Label" parent="delim"]
+margin_right = 1022.0
+margin_bottom = 151.0
+theme = ExtResource( 2 )
+text = "Enter delimiter:"
+
+[node name="input" type="LineEdit" parent="delim"]
+margin_top = 155.0
+margin_right = 1022.0
+margin_bottom = 214.0
+theme = ExtResource( 2 )
+caret_blink = true
+
+[connection signal="pressed" from="dragndrop/Options/VBoxContainer/choose" to="." method="_on_choose_pressed"]
+[connection signal="pressed" from="dragndrop/Options/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="text_entered" from="filepath/input" to="." method="_on_input_text_entered"]
+[connection signal="text_entered" from="savename/input" to="." method="_save_name_entered"]
+[connection signal="text_entered" from="delim/input" to="." method="_enter_delimiter"]

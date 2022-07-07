@@ -48,26 +48,25 @@ alignment = 1
 margin_right = 1920.0
 alignment = 1
 
-[node name="oo" type="HBoxContainer" parent="Buttons"]
+[node name="oo" type="VBoxContainer" parent="Buttons"]
 margin_top = 4.0
 margin_right = 1920.0
-margin_bottom = 86.0
+margin_bottom = 172.0
 alignment = 1
 
 [node name="Import" type="Button" parent="Buttons/oo"]
-margin_left = 792.0
-margin_right = 987.0
+margin_right = 1920.0
 margin_bottom = 82.0
 text = "import"
 
 [node name="back" type="Button" parent="Buttons/oo"]
-margin_left = 991.0
-margin_right = 1127.0
-margin_bottom = 82.0
+margin_top = 86.0
+margin_right = 1920.0
+margin_bottom = 168.0
 text = "back"
 
 [node name="MarginContainer" type="MarginContainer" parent="Buttons"]
-margin_top = 90.0
+margin_top = 176.0
 margin_right = 1920.0
 margin_bottom = 1076.0
 size_flags_vertical = 3

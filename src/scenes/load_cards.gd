@@ -47,7 +47,6 @@ func _save_open(save_name: String):
 	# CHANGE THIS STUFF INTO LIKE A MODE OR SOMETHING
 	$Buttons/saves.hide()
 	$Buttons/oo.hide()
-	
 	# DECK INITIATING
 	deck = Deck.new(save_name) # Take in string from button
 	deck.loadIn()
@@ -67,20 +66,6 @@ func _ready():
 		get_node("Buttons/saves").add_child(butt)
 	# Read in current save files and make buttons for each:
 	# Buttons/Options/VBoxContainer add buttons to this container
-	
-	
-func load_in(files_dropped : PoolStringArray, screen : int):
-	"On file drop, do this"
-	pass
-	# TODO
-	# VERIFY the file is a CSV/TXT/SOMITHNG in the future
-	#if files_dropped[0]
-	# GET USER file input
-	#deck = Deck.new() # handle if file exsists with popup
-	# Deck.import(files_dropped[0])
-	# prompt for delimiter
-	# run function on it to format it correctly (below)
-	
 
 func _input(event):
 	# Mouse in viewport coordinates.

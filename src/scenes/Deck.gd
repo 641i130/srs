@@ -13,18 +13,19 @@ func _init(name_in): # Called from .new(name)
 	var save_game = File.new() # Check if file exsists
 	if not save_game.file_exists("user://saves/" + self.name + ".txt"): # If it doesn't exsist make it
 		# TODO Prompt its missing, ask to import
-		save()
+		#save()
+		pass
+	else:
+		OS.alert('File is empty without any data.', 'Error')
 	# Start practice? make that func i think
 
 func loadIn():
 	"File exsists already, read into inPlay"
 	var save_game = File.new() # Check if file exsists
 	var path = "user://saves/" + self.name + ".txt" # TODO FIX FILE EXTENSION
-	
 	if not save_game.file_exists(path):
-		# TODO Throw error missing file 
 		# TODO Restore from a backup?
-		print("FILE is missing for some reason")
+		OS.alert('File is empty without any data.', 'Error')
 	else:
 		save_game.open(path, File.READ) # Open user inputted file
 		var lines = save_game.get_as_text().split("\n") # Read file in & Split by default delim
@@ -33,32 +34,35 @@ func loadIn():
 			if len(arr) > 1:
 				inPlay.push_front([arr[0],arr[1],arr[2]])
 
-func import(path,delim,count=2):
+func import(path,delim,count=2): #todo add count here?
 	"Import file into save data format"
 	var file = File.new()
 	file.open(path, File.READ) # Open user inputted file
 	var lines = file.get_as_text().split("\n") # Split text by line
 	file.close()
 	for l in lines:
+		print(l)
 		var arr = l.split(delim) # Use inputted delimiter
 		if len(arr) == count:
 			cards.push_front([arr[0],arr[1]])
-	
 	# SAVE GAME FOR THE FIRST TIME
 	var save_game = File.new() # Attempt to make a save file
-	save_game.open("user://" + self.name + ".txt", File.WRITE)
+	save_game.open("user://" + self.name + ".txt", File.WRITE) 
 	# For every card
-	var time = [OS.get_date().get('year'),OS.get_date().get('month'),OS.get_date().get('day')] # basically need to review card right away
+	var time = [OS.get_date().get('year'),OS.get_date().get('month'),OS.get_date().get('day'),OS.get_time().hour,OS.get_time().minute,OS.get_time().second] # basically need to review card right away
 	for card in cards:
 		# Example: [2022, 4, 3];*;ゴルフ;*;golf
 		# TODO depending on how many values the user is inputting we can add them at the end here:
 		# TODO USE DATA TYPE IN PLACE OF TIME MAYBE? 
 		var card_data = str(time) + ";*;" + card[0] + ";*;" + card[1] 
 		save_game.store_line(card_data) # Write the line to the file
+	save_game.close()
+	print(save_game)
 
 func save():
 	"Save game data into save format"
 	"Uses current inPlay array to save"
+	print("SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE SAVE ")
 	var save_game = File.new() # Attempt to make a save file if it doesn't exsist
 	# Update dates based off of inPlay
 	save_game.open("user://saves/" + self.name + ".txt", File.WRITE)
@@ -123,8 +127,7 @@ func mod(card):
 					# Here I would show the end screen and stuff then 
 					# Go back to deck listing
 					self.complete = true
-		card.show()
-		step+=1
+		step+=1 # Iterator basically; this lets us do everything in a set order continuously
 	else:
 		# IF save file is empty
 		# TODO SOMETHING SCREAM OR SOMETHING
@@ -133,6 +136,7 @@ func mod(card):
 func start():
 	"Loop over deck until all cards are marked for a further date...?"
 	"Iterate over cards and ask user if they're right or not"
+	# TODO algorthim logic ...
 	randomize()
 	inPlay.shuffle() # shuffle deck
 	# Add in the card object we'll be modifying:
