@@ -17,4 +17,6 @@ func _ready():
 
 func _start_pressed():
 	get_tree().change_scene("res://scenes/load_cards.tscn")
-	
+
+func _on_Settings_pressed():
+	get_tree().change_scene("res://scenes/settings.tscn")

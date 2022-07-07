@@ -59,3 +59,4 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/VBoxContainer/Start" to="." method="_start_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
