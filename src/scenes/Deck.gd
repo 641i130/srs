@@ -13,10 +13,9 @@ func _init(name_in): # Called from .new(name)
 	var save_game = File.new() # Check if file exsists
 	if not save_game.file_exists("user://saves/" + self.name + ".txt"): # If it doesn't exsist make it
 		# TODO Prompt its missing, ask to import
-		#save()
-		pass
+		save()
 	else:
-		OS.alert('File is empty without any data.', 'Error')
+		OS.alert('Init deck file error (18 of deck.gd)', 'Error')
 	# Start practice? make that func i think
 
 func loadIn():
@@ -25,7 +24,7 @@ func loadIn():
 	var path = "user://saves/" + self.name + ".txt" # TODO FIX FILE EXTENSION
 	if not save_game.file_exists(path):
 		# TODO Restore from a backup?
-		OS.alert('File is empty without any data.', 'Error')
+		OS.alert('File is empty without any data. (27 of deck.gd)', 'Error')
 	else:
 		save_game.open(path, File.READ) # Open user inputted file
 		var lines = save_game.get_as_text().split("\n") # Read file in & Split by default delim
@@ -40,16 +39,17 @@ func import(path,delim,count=2): #todo add count here?
 	file.open(path, File.READ) # Open user inputted file
 	var lines = file.get_as_text().split("\n") # Split text by line
 	file.close()
+	print("Reading file into array.")
 	for l in lines:
-		print(l)
 		var arr = l.split(delim) # Use inputted delimiter
 		if len(arr) == count:
 			cards.push_front([arr[0],arr[1]])
 	# SAVE GAME FOR THE FIRST TIME
 	var save_game = File.new() # Attempt to make a save file
-	save_game.open("user://" + self.name + ".txt", File.WRITE) 
+	save_game.open("user://saves/" + self.name + ".txt", File.WRITE) 
 	# For every card
 	var time = [OS.get_date().get('year'),OS.get_date().get('month'),OS.get_date().get('day'),OS.get_time().hour,OS.get_time().minute,OS.get_time().second] # basically need to review card right away
+	print("Converting array into save format.")
 	for card in cards:
 		# Example: [2022, 4, 3];*;ゴルフ;*;golf
 		# TODO depending on how many values the user is inputting we can add them at the end here:
@@ -57,7 +57,6 @@ func import(path,delim,count=2): #todo add count here?
 		var card_data = str(time) + ";*;" + card[0] + ";*;" + card[1] 
 		save_game.store_line(card_data) # Write the line to the file
 	save_game.close()
-	print(save_game)
 
 func save():
 	"Save game data into save format"
