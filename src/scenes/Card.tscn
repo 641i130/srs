@@ -2,8 +2,9 @@
 
 [ext_resource path="res://theme/menu.tres" type="Theme" id=1]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=7]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -11,14 +12,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -26,14 +28,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=9]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -41,14 +44,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=10]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -56,7 +60,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -64,6 +68,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -71,7 +76,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -79,6 +84,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -86,7 +92,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -98,6 +104,7 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="Top" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0 )
 margin_top = 309.0
 margin_right = 1920.0
 margin_bottom = 460.0
@@ -108,10 +115,10 @@ align = 1
 autowrap = true
 
 [node name="fade_in" type="AnimationPlayer" parent="Top"]
-anims/fade = SubResource( 1 )
+anims/fade = SubResource( 7 )
 
 [node name="fade_out" type="AnimationPlayer" parent="Top"]
-anims/fade = SubResource( 3 )
+anims/fade = SubResource( 8 )
 
 [node name="Bot" type="Label" parent="."]
 margin_top = 464.0
@@ -123,12 +130,13 @@ align = 1
 autowrap = true
 
 [node name="fade_in" type="AnimationPlayer" parent="Bot"]
-anims/fade = SubResource( 2 )
+anims/fade = SubResource( 9 )
 
 [node name="fade_out" type="AnimationPlayer" parent="Bot"]
-anims/fade = SubResource( 4 )
+anims/fade = SubResource( 10 )
 
 [node name="Bot1" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0 )
 margin_top = 619.0
 margin_right = 1920.0
 margin_bottom = 770.0

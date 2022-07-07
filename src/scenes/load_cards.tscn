@@ -6,6 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("HBoxContainer:modulate")
 tracks/0/interp = 1
@@ -13,7 +14,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
@@ -21,6 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("HBoxContainer:modulate")
 tracks/0/interp = 1
@@ -28,7 +30,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
@@ -79,6 +81,7 @@ stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons/SRS"]
 visible = false
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 631.0
 margin_top = -41.0
 margin_right = 1289.0

@@ -121,7 +121,9 @@ func mod(card):
 				else: # If its the last card!
 					card.get_node("Top").text = "Session Complete" # first card
 					card.get_node("Bot").text = "(insert stats here)"
-					card.get_node("Bot").get_node("fade_in").play("fade")
+					var ani = card.get_node("Bot").get_node("fade_in")
+					ani.play("fade")
+					yield(ani, "animation_finished")
 					# End game practice loop here! i hate how unorganized this is :P
 					# Here I would show the end screen and stuff then 
 					# Go back to deck listing

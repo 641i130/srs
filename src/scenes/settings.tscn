@@ -14,22 +14,30 @@ size_flags_horizontal = 0
 theme = ExtResource( 2 )
 alignment = 1
 
-[node name="Import" type="HSlider" parent="Buttons"]
+[node name="MarginContainer2" type="MarginContainer" parent="Buttons"]
 margin_right = 1920.0
-margin_bottom = 16.0
+margin_bottom = 487.0
+size_flags_vertical = 3
+
+[node name="Import" type="HScrollBar" parent="Buttons"]
+margin_top = 491.0
+margin_right = 1920.0
+margin_bottom = 503.0
+theme = ExtResource( 2 )
 
 [node name="back" type="Button" parent="Buttons"]
-margin_top = 20.0
+margin_top = 507.0
 margin_right = 1920.0
-margin_bottom = 102.0
+margin_bottom = 589.0
 text = "back"
 
 [node name="MarginContainer" type="MarginContainer" parent="Buttons"]
-margin_top = 106.0
+margin_top = 593.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
 
 [node name="transition" parent="." instance=ExtResource( 3 )]
 
+[connection signal="value_changed" from="Buttons/Import" to="." method="_animation_slider_top"]
 [connection signal="pressed" from="Buttons/back" to="." method="_on_back_pressed"]
