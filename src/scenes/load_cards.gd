@@ -77,11 +77,15 @@ func _input(event):
 		if not deck.complete:
 			deck.mod(card)
 			if toggle == 0:
-				$Buttons/SRS/fade_in.play("fade")
+				var ani = $Buttons/SRS/fade_in
+				ani.playback_speed = global.ani
+				ani.play("fade")
+				yield(ani, "animation_finished")
 				$Buttons/SRS/HBoxContainer.show()
 				toggle+=1
 			else:
 				var ani = $Buttons/SRS/fade_out
+				ani.playback_speed = global.ani
 				ani.play("fade")
 				yield(ani, "animation_finished")
 				$Buttons/SRS/HBoxContainer.hide()

@@ -15,7 +15,9 @@ func _init(name_in): # Called from .new(name)
 		# TODO Prompt its missing, ask to import
 		save()
 	else:
-		OS.alert('Init deck file error (18 of deck.gd)', 'Error')
+		#OS.alert('Init deck file error (18 of deck.gd)', 'Error')
+		pass
+		print("idk, its saved already, good ig")
 	# Start practice? make that func i think
 
 func loadIn():
@@ -100,7 +102,9 @@ func mod(card):
 					card.get_node("Bot1").get_node("fade_in").play("fade")
 				else:
 					card.get_node("Bot").text = inPlay[0][2]  # second card
-					card.get_node("Bot").get_node("fade_in").play("fade")
+					var ani = card.get_node("Bot").get_node("fade_in")
+					ani.play("fade")
+					yield(ani,"animation_finished")
 			2:
 				# Fade out cards, remove from array (TODO algorthim based off of time and button pressed)
 				inPlay.pop_front()
@@ -109,6 +113,8 @@ func mod(card):
 					card.get_node("Bot1").get_node("fade_out").play("fade")
 					var ani = card.get_node("Top").get_node("fade_out")
 					var aani = card.get_node("Bot").get_node("fade_out")
+					ani.playback_speed = global.ani
+					aani.playback_speed = global.ani
 					ani.play("fade")
 					aani.play("fade")
 					yield(ani, "animation_finished")
@@ -122,6 +128,7 @@ func mod(card):
 					card.get_node("Top").text = "Session Complete" # first card
 					card.get_node("Bot").text = "(insert stats here)"
 					var ani = card.get_node("Bot").get_node("fade_in")
+					ani.playback_speed = global.ani
 					ani.play("fade")
 					yield(ani, "animation_finished")
 					# End game practice loop here! i hate how unorganized this is :P

@@ -1,4 +1,4 @@
 extends Node
 
 # Set global vars!!!
-var ani = 1
+var ani = 2.0 # Testing

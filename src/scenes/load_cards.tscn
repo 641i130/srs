@@ -81,7 +81,6 @@ stretch_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons/SRS"]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
 margin_left = 631.0
 margin_top = -41.0
 margin_right = 1289.0
