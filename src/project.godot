@@ -22,9 +22,13 @@ _global_script_class_icons={
 
 config/name="srs"
 config/description="An SRS wannabe memorization tool used for memorizing vocabulary or terms. I just wanted a pretty anki!"
-run/main_scene="res://scenes/load_cards.tscn"
+run/main_scene="res://scenes/settings.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://srs_icon.png"
+
+[autoload]
+
+global="*res://scenes/autoload.gd"
 
 [display]
 

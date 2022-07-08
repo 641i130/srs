@@ -6,8 +6,9 @@ func _process(delta):
 
 
 func _animation_slider_top(value):
-	# TODO SET to global var
-	print(value) 
+	# Set global animation speed variable!
+	var scale = value*2/100
+	global.ani = scale
 
 
 func _on_back_pressed():
